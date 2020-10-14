@@ -1,9 +1,21 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import {shallow} from 'enzyme';
 import App from './App';
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('<App/>', () => {
+  let store, wrapper: any
+  const mockStore = configureStore()
+
+  beforeEach(() => {
+    store = mockStore({})
+    wrapper = shallow(<Provider store={store}>
+      <App />
+    </Provider>);
+  })
+
+  it('match snapshot', () => {
+    expect(wrapper).toMatchSnapshot();
+  })
 });

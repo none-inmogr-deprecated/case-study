@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MessageDetails/> with message match snapshot 1`] = `
+<Styled(MuiBox)
+  className="MessageDetails"
+  p={2}
+>
+  <Styled(MuiBox)
+    p={1}
+  >
+    <strong
+      className="MessageDetails__subject"
+    >
+      testsubject
+    </strong>
+     
+    <span
+      className="MessageDetails__received"
+    >
+      (
+      01/01/2020
+      )
+    </span>
+  </Styled(MuiBox)>
+  <Styled(MuiBox)
+    className="MessageDetails__message"
+    p={1}
+  >
+    testmessage
+  </Styled(MuiBox)>
+  <Styled(MuiBox)
+    p={1}
+  >
+    <WithStyles(ForwardRef(Button))
+      className="MessageDetails__unreadButton"
+      color="primary"
+      onClick={[Function]}
+      size="small"
+      variant="contained"
+    >
+      Mark as unread
+    </WithStyles(ForwardRef(Button))>
+      
+    <WithStyles(ForwardRef(Button))
+      className="MessageDetails__archiveButton"
+      color="secondary"
+      onClick={[Function]}
+      size="small"
+      variant="contained"
+    >
+      Archive
+    </WithStyles(ForwardRef(Button))>
+  </Styled(MuiBox)>
+</Styled(MuiBox)>
+`;

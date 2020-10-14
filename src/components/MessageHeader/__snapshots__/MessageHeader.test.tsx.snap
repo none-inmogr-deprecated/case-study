@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MessageHeader/> with unread message match snapshot 1`] = `
+<Styled(MuiBox)
+  bgcolor="primary.main"
+  color="primary.contrastText"
+  p={2}
+>
+  <strong>
+    Messages
+  </strong>
+   
+  <span
+    className="MessageHeader__unreadMessages"
+  >
+    (1 unread)
+  </span>
+</Styled(MuiBox)>
+`;

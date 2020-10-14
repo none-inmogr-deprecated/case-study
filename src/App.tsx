@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import {Container, Grid} from "@material-ui/core";
+import createSagaMiddleware from 'redux-saga';
+import MessageDetails from "./components/MessageDetails/MessageDetails";
+import MessageList from "./components/MessageList/MessageList";
+import rootSaga from "./state/sagas";
+import rootReducer from "./state/reducers";
+import {applyMiddleware, compose, createStore} from "redux";
+import {Provider} from "react-redux";
+import MessageHeader from "./components/MessageHeader/MessageHeader";
+
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(rootReducer, {}, compose(applyMiddleware(sagaMiddleware)))
+sagaMiddleware.run(rootSaga, {dispatch: store.dispatch})
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Provider store={store}>
+            <div className="App">
+                <Container maxWidth="md">
+                    <Grid container spacing={1}>
+                        <Grid item xs={12}>
+                            <MessageHeader/>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <MessageList/>
+                        </Grid>
+                        <Grid item xs={12} sm={8}>
+                            <MessageDetails/>
+                        </Grid>
+                    </Grid>
+                </Container>
+            </div>
+        </Provider>
+    );
 }
 
-export default App;
+export default App

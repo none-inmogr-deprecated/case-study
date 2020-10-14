@@ -1,0 +1,10 @@
+.MessageListItem {
+  cursor: pointer;
+
+  &--read {
+    color: #ddd;
+  }
+  &--active {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
