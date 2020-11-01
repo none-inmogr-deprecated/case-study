@@ -1,6 +1,6 @@
 import React from 'react';
 import './MessageDetails.scss';
-import {Box, Button} from "@material-ui/core";
+import {Avatar, Box, Button} from "@material-ui/core";
 import IRootState from "../../types/IRootState";
 import {connect} from "react-redux";
 import {IMessage} from "../../types/IMessage";
@@ -48,6 +48,8 @@ export const MessageDetails: React.FC<Props> = (props: Props) => {
     return (
         <Box className="MessageDetails" p={2}>
             {props.message && <>
+                <Box p={1} display="flex" alignItems="center"><Avatar alt={`Image of User [${message.id}]`} src="https://avatars.dicebear.com/api/male/test.svg" /> <span
+                    className="MessageDetails__received">Sample Sender Name</span></Box>
                 <Box p={1}><strong
                     className="MessageDetails__subject">{message.subject}</strong> <span
                     className="MessageDetails__received">({message.received})</span></Box>
