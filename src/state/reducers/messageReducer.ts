@@ -45,7 +45,7 @@ const messageReducer = (state: IMessageState = defaultState, action: BaseAction)
                 ...state,
                 messages: state.messages.map(message => {
                     if (message.id === action.payload.id) {
-                        message.isArchived = false
+                        message.isArchived = true
                     }
 
                     return message
