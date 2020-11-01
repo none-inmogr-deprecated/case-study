@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import './MessageList.scss';
-import {Box} from "@material-ui/core";
+import {Box, TextField} from "@material-ui/core";
 import IRootState from "../../types/IRootState";
 import {IMessage} from "../../types/IMessage";
 import messagesLoad from "../../state/actions/messagesLoad";
@@ -22,6 +22,8 @@ export interface Props extends IStateProps, IActionProps {
 }
 
 export const MessageList: React.FC<Props> = (props: Props) => {
+    const [search, setSearch] = useState("");
+
     useEffect(() => {
         if (props.messages.length === 0) {
             props.loadMessages()
@@ -29,16 +31,21 @@ export const MessageList: React.FC<Props> = (props: Props) => {
     })
 
     return (
-        <Box bgcolor="info.main" color="info.contrastText" p={2}>
-            {props.messages && <>
-                {props.messages.filter(message => !message.isArchived).map(message => <MessageListItem
-                    key={`message${message.id}`}
-                    onClick={evt => props.selectMessage(message.id)}
-                    isActive={props.activeMessage?.id === message.id}
-                    message={message}/>)}
-            </>}
-            {props.messages.length === 0 && 'No messages found.'}
-        </Box>
+        <>
+            <Box bgcolor="info.main" color="info.contrastText" p={2}>
+                <TextField label="Search" variant="filled" fullWidth onChange={(e) => setSearch(e.currentTarget.value)} />
+            </Box>
+            <Box bgcolor="info.main" color="info.contrastText" p={2}>
+                {props.messages && <>
+                    {props.messages.filter(message => !message.isArchived && (message.message.toLowerCase().includes(search.toLowerCase()) || message.subject.toLowerCase().includes(search.toLowerCase()))).map(message => <MessageListItem
+                        key={`message${message.id}`}
+                        onClick={evt => props.selectMessage(message.id)}
+                        isActive={props.activeMessage?.id === message.id}
+                        message={message}/>)}
+                </>}
+                {props.messages.length === 0 && 'No messages found.'}
+            </Box>
+        </>
     )
 }
 
